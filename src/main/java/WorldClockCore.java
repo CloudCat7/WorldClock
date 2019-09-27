@@ -15,6 +15,12 @@ public class WorldClockCore {
         editAllTimes(now);
     }
 
+    public void editTimes(String dateTime){
+        LocalDateTime localDateTime = DateTimeConvert.convertStringToDateTime(dateTime);
+        times.clear();
+        editAllTimes(localDateTime);
+    }
+
     private void editAllTimes(LocalDateTime localDateTime) {
         ClockTime bjTime = new ClockTime(localDateTime,Clock.valueOf("bj"));
         ClockTime nyTime = new ClockTime(localDateTime.minusHours(13),Clock.valueOf("ny"));
@@ -26,12 +32,6 @@ public class WorldClockCore {
         times.add(ldTime);
         times.add(mscTime);
         times.add(snTime);
-    }
-
-    public void editTimes(String dateTime){
-        LocalDateTime localDateTime = DateTimeConvert.convertStringToDateTime(dateTime);
-        times.clear();
-        editAllTimes(localDateTime);
     }
 
     public List<ClockTime> getTimes(){

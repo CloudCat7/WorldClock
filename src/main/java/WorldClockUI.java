@@ -65,7 +65,7 @@ public class WorldClockUI {
 
         System.out.println(".......请按任意键继续.......");
         System.in.read();
-        System.out.print("\n");
+        System.out.println("\n");
     }
 
     private static void performEditEntry(Scanner scanner){
