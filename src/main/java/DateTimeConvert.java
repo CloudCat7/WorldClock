@@ -9,10 +9,10 @@ public class DateTimeConvert {
         LocalDate today;
         try{
            localDateTime = LocalDateTime.parse(dateTimeString.toUpperCase(),
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         } catch (Throwable t){
             throw new RuntimeException("输入调整时间格式不正确：["+
-                    dateTimeString.toUpperCase() + "]，输入时间格式为[yyyy-MM-dd HH:mm]");
+                    dateTimeString.toUpperCase() + "]，输入时间格式为[yyyy-MM-dd HH:mm:ss]");
         }
         return localDateTime;
     }

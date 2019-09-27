@@ -1,9 +1,12 @@
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorldClockCore {
     private List<ClockTime> times;
+    private LocalDateTime oriTime;
 
     public WorldClockCore() {
         this.times = new ArrayList<>();
@@ -12,10 +15,12 @@ public class WorldClockCore {
 
     private void initTimes(){
         LocalDateTime now = LocalDateTime.now();
+        oriTime = now;
         editAllTimes(now);
     }
 
     public void editTimes(String dateTime){
+        oriTime = LocalDateTime.now();
         LocalDateTime localDateTime = DateTimeConvert.convertStringToDateTime(dateTime);
         times.clear();
         editAllTimes(localDateTime);
@@ -36,6 +41,15 @@ public class WorldClockCore {
 
     public List<ClockTime> getTimes(){
         return times;
+    }
+
+    public void updateTimes(){
+        LocalDateTime now = LocalDateTime.now();
+        Duration duration = Duration.between(oriTime,now);
+        oriTime = now;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String curTime = formatter.format(getTimes().get(0).getLocalDateTime().plusNanos(duration.toNanos()));
+        editTimes(curTime);
     }
 
 }

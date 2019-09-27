@@ -24,8 +24,9 @@ public class WorldClockUI {
     }
 
     private static String displayMenu(Scanner scanner) throws Throwable {
+        clocks.updateTimes();
         ClockTime mainTime = clocks.getTimes().get(0);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         System.out.println(String.format("\n【 现在是%s时间 %s 】\n",
                 mainTime.getClock().getName(), formatter.format(mainTime.getLocalDateTime())));
         System.out.println("您可输入：");
@@ -54,9 +55,10 @@ public class WorldClockUI {
     }
 
     private static void performAllEntry() throws Throwable{
+        clocks.updateTimes();
         System.out.println("\n\n世界时钟的时间如下：");
         for(ClockTime ct : clocks.getTimes()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String time = formatter.format(ct.getLocalDateTime());
             System.out.println(String.format("%s\t\t%s", ct.getClock().getName(),time));
         }
@@ -68,7 +70,7 @@ public class WorldClockUI {
 
     private static void performEditEntry(Scanner scanner){
         scanner.nextLine();
-        System.out.println("\n请输入正确的时间（仅北京时间）（yyyy-MM-dd HH:mm）");
+        System.out.println("\n请输入正确的时间（仅北京时间）（yyyy-MM-dd HH:mm:ss）");
         String when = scanner.nextLine();
         clocks.editTimes(when);
         System.out.println("调整成功！\n");
