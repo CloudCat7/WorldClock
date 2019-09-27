@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -25,7 +23,7 @@ public class WorldClockUI {
 
     }
 
-    public static String displayMenu(Scanner scanner) throws Throwable {
+    private static String displayMenu(Scanner scanner) throws Throwable {
         ClockTime mainTime = clocks.getTimes().get(0);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         System.out.println(String.format("\n【 现在是%s时间 %s 】\n",
