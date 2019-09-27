@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -10,6 +11,7 @@ public class ClockTest {
     Clock clocks;
 
     @Test
+    @DisplayName("时钟简称与全称对应测试")
     void getName(){
         assertAll(
                 ()->assertEquals("北京",Clock.valueOf("bj").getName()),
